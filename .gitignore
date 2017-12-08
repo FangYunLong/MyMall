@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+.gitignore
 git*.class
 
 #package file
@@ -36,5 +38,49 @@ target/
 .DS_Store
 Thumbs.db
 
-/web/
+
+
+=======
+git*.class
+
+#package file
+*.war
+*.ear
+
+#kdiff3 ignore
+*.orif
+
+#maven ignore
+target/
+
+#eclipse ignore
+.setting/
+.project
+.classpatch
+
+#idea ignore
+/.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+.idea/vcs.xml
+
+/out/
+
+#temp file
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+#system ignore
+.DS_Store
+Thumbs.db
+
+web/
+!web/node_modukes
+web/npm_debug.log
+
 
