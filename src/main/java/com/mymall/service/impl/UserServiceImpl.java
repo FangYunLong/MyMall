@@ -134,7 +134,7 @@ public class UserServiceImpl implements IUserService {
 
 
     public ServerResponse<String> resetPassword(String passwordOld,String passwordNew,User user){
-        //防止横向越权,要校验一下这个用户的旧密码,一定要指定是这个用户.因为我们会查询一个count(1),如果不指定id,那么结果就是true啦count>0;
+        //防止横向越权,要校验一下这个用户的旧密码,一定要指定是这个用户.查询一个count(1),指定id;
         int resultCount = userMapper.checkPassword(MD5Util.MD5EncodeUtf8(passwordOld),user.getId());
         if(resultCount == 0){
             return ServerResponse.createByErrorMessage("旧密码错误");
@@ -150,8 +150,7 @@ public class UserServiceImpl implements IUserService {
 
 
     public ServerResponse<User> updateInformation(User user){
-        //username是不能被更新的
-        //email也要进行一个校验,校验新的email是不是已经存在,并且存在的email如果相同的话,不能是我们当前的这个用户的.
+        //email进行一个校验,校验新的email是不是已经存在,email如果相同的话,提示用户.
         int resultCount = userMapper.checkEmailByUserId(user.getEmail(),user.getId());
         if(resultCount > 0){
             return ServerResponse.createByErrorMessage("email已存在,请更换email再尝试更新");

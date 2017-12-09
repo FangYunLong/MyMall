@@ -33,8 +33,7 @@ public class CategoryManageController {
         }
         //校验一下是否是管理员
         if(iUserService.checkAdminRole(user).isSuccess()){
-            //是管理员
-            //增加我们处理分类的逻辑
+            //增加处理分类的逻辑
             return iCategoryService.addCategory(categoryName,parentId);
 
         }else{
