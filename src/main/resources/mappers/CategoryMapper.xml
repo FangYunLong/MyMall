@@ -21,7 +21,7 @@
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrim aryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -82,6 +82,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.mymall.pojo.Category" >
     update category
     <set >
@@ -106,6 +107,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.mymall.pojo.Category" >
     update category
     set parent_id = #{parentId,jdbcType=INTEGER},
@@ -116,4 +118,13 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectCategoryChildrenByParentId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where parent_id = #{parentId}
+  </select>
+
 </mapper>

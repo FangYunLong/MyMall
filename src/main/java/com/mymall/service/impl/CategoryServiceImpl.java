@@ -74,7 +74,6 @@ public class CategoryServiceImpl implements ICategoryService {
         Set<Category> categorySet = Sets.newHashSet();
         findChildCategory(categorySet,categoryId);
 
-
         List<Integer> categoryIdList = Lists.newArrayList();
         if(categoryId != null){
             for(Category categoryItem : categorySet){
@@ -85,7 +84,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
 
-    //递归算法,算出子节点
+    //递归算法,算出子节点,set做排重，category需要重写hashcode和equals方法
     private Set<Category> findChildCategory(Set<Category> categorySet ,Integer categoryId){
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
         if(category != null){
